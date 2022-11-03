@@ -30,8 +30,6 @@
         {
             this.btnboqua = new System.Windows.Forms.Button();
             this.btndongy = new System.Windows.Forms.Button();
-            this.txtID = new System.Windows.Forms.TextBox();
-            this.label3 = new System.Windows.Forms.Label();
             this.txtTennhom = new System.Windows.Forms.TextBox();
             this.label1 = new System.Windows.Forms.Label();
             this.SuspendLayout();
@@ -54,22 +52,7 @@
             this.btndongy.TabIndex = 33;
             this.btndongy.Text = "donng y";
             this.btndongy.UseVisualStyleBackColor = true;
-            // 
-            // txtID
-            // 
-            this.txtID.Location = new System.Drawing.Point(304, 149);
-            this.txtID.Name = "txtID";
-            this.txtID.Size = new System.Drawing.Size(322, 22);
-            this.txtID.TabIndex = 32;
-            // 
-            // label3
-            // 
-            this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(175, 155);
-            this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(20, 16);
-            this.label3.TabIndex = 31;
-            this.label3.Text = "ID";
+            this.btndongy.Click += new System.EventHandler(this.btndongy_Click_1);
             // 
             // txtTennhom
             // 
@@ -96,8 +79,6 @@
             this.Controls.Add(this.label1);
             this.Controls.Add(this.btnboqua);
             this.Controls.Add(this.btndongy);
-            this.Controls.Add(this.txtID);
-            this.Controls.Add(this.label3);
             this.Name = "frmnhom";
             this.Text = "frmnhom";
             this.Load += new System.EventHandler(this.frmnhom_Load);
@@ -110,8 +91,6 @@
 
         private System.Windows.Forms.Button btnboqua;
         private System.Windows.Forms.Button btndongy;
-        private System.Windows.Forms.TextBox txtID;
-        private System.Windows.Forms.Label label3;
         private System.Windows.Forms.TextBox txtTennhom;
         private System.Windows.Forms.Label label1;
     }

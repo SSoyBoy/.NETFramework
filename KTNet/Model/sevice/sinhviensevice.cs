@@ -7,7 +7,7 @@ using KTNet.viewmodel;
 
 namespace KTNet.Model.sevice
 {
-    internal class sinhviensevice
+    public class sinhviensevice
     {
         public static List<sinhvien> GetList()
         {
@@ -68,11 +68,11 @@ namespace KTNet.Model.sevice
             }
             else
             {
-                //db.Nhomhocs.Add(nh);
+                // db.Nhomhocs.Add(nh);
                 db.SaveChanges();
                 return KetQua.ThanhCong;
             }
-            //db.Nhomhocs.Add(nh);
+            // db.Nhomhocs.Add(nh);
             db.SaveChanges();
         }
 
@@ -96,5 +96,14 @@ namespace KTNet.Model.sevice
             db.SaveChanges();
             return KetQua.ThanhCong;
         }
+        public static KetQua ReMoveNhom(nhomhoc nh)
+        {
+            var db = new AppDBContext();
+            var nhomhoc = db.Nhomhocs.Where(e => e.ID == nh.ID).FirstOrDefault();
+            //db.Sinhviens.Remove(nh);
+            db.SaveChanges();
+            return KetQua.ThanhCong;
+        }
+        
     }
 }

@@ -80,5 +80,39 @@ namespace KTNet
             }
             DialogResult = DialogResult.OK;
         }
+
+        private void btndongy_Click_1(object sender, EventArgs e)
+        {
+            if (this.nhomhoc == null)
+            {
+                var nh = new Nhomhoc
+                {
+                    //ID = seletedsinhvien.ID,
+                    Tennhom = txtTennhom.Text,
+
+                };
+                if (sinhviensevice.AddNhomhoc(nhomhoc) == KetQua.ThanhCong)
+                {
+                    DialogResult = DialogResult.OK;
+                }
+                else
+                {
+                    MessageBox.Show
+                        ("Ten nhom bi Trung", "Thong bao");
+                    txtTennhom.Focus();
+                }
+            }
+            else
+            {
+                nhomhoc.Tennhom = txtTennhom.Text;
+                //nhomhoc.ID = se.ID;
+            }
+            DialogResult = DialogResult.OK;
+        }
+
+        private void txtID_TextChanged(object sender, EventArgs e)
+        {
+
+        }
     }
 }

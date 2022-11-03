@@ -25,7 +25,7 @@ namespace KTNet
             var ls = sinhviensevice.getNhom();
             SourceNhom.DataSource = ls;
             //bdsSinhVien.DataSource = list;
-            dataGridView1.DataSource = ls;
+            dataGridView1.DataSource = SourceNhom;
         }
         public nhomhoc selectedNhom
         {
@@ -74,22 +74,24 @@ namespace KTNet
 
         private void btnthem_Click(object sender, EventArgs e)
         {
-            var f = new frmsinhvien();
+            var f = new frmnhom();
             var r = f.ShowDialog();
             if (r == DialogResult.OK)
             {
-                NapDSSinhvien();
+                napdsnhomhoc();
             }
         }
 
         private void btnxoa_Click(object sender, EventArgs e)
         {
-            if (selectedSinhvien != null)
+            if (selectedNhom != null)
             {
-                var f = new frmsinhvien(selectedSinhvien);
-                if (f.ShowDialog() == DialogResult.OK)
-                    NapDSSinhvien();
-
+                var rs = MessageBox.Show("Bạn có chắc là muốn xóa liên lạc này?", "Chú ý", MessageBoxButtons.OKCancel, MessageBoxIcon.Warning);
+                if (rs == DialogResult.OK)
+                {
+                    sinhviensevice.ReMoveNhom(selectedNhom);
+                    napdsnhomhoc();
+                }
             }
         }
 
@@ -126,6 +128,48 @@ namespace KTNet
         private void chitietsv(object sender, DataGridViewCellEventArgs e)
         {
 
+        }
+
+        private void btnthem_Click_1(object sender, EventArgs e)
+        {
+            var f = new frmsinhvien();
+            var r = f.ShowDialog();
+            if (r == DialogResult.OK)
+            {
+                NapDSSinhvien();
+            }
+        }
+
+        private void btnxoa_Click_1(object sender, EventArgs e)
+        {
+            if (selectedSinhvien != null)
+            {
+                var rs = MessageBox.Show("Bạn có chắc là muốn xóa liên lạc này?", "Chú ý", MessageBoxButtons.OKCancel, MessageBoxIcon.Warning);
+                if (rs == DialogResult.OK)
+                {
+                    sinhviensevice.ReMoveSinhvien(selectedSinhvien);
+                    NapDSSinhvien();
+                }
+            }
+        }
+
+        private void txtTimKiem_TextChanged(object sender, EventArgs e)
+        {
+            {
+                var db = new AppDBContext();
+                var text = txtTimKiem.Text;
+                if (selectedNhom != null)
+                {
+                    foreach (var item in db.Nhomhocs)
+                    {
+                        if (item.ID == selectedNhom.ID)
+                        {
+                            var results = db.Sinhviens.Where(x => x.Tengoi.ToLower().Contains(text)).ToList();
+                            dataGridView2.DataSource = results;
+                        }
+                    }
+                }
+            }
         }
     }
 }
